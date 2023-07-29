@@ -7,6 +7,7 @@ import axios from 'axios';
 import RestaurantUpdate from './RestaurantUpdate';
 import './RestaurantDetails.css';
 import ConfirmationDailog from './ConfirmDialog';
+import configuration from '../config/configuration';
 
 function RestaurantDetails() {
   const [restaurant, setRestaurant] = useState(null);
@@ -19,7 +20,7 @@ function RestaurantDetails() {
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:8080/restaurants/${id}`);
+        const { data } = await axios.get(`${configuration.base_url}restaurants/${id}`);
         setRestaurant(data);
         setIsLoading(false);
       } catch (error) {
@@ -35,7 +36,7 @@ function RestaurantDetails() {
     const confirmDelete = window.confirm('Are you sure you want to delete this restaurant?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:8080/restaurants/${id}`);
+        await axios.delete(`${configuration.base_url}restaurants/${id}`);
         navigate('/');
       } catch (error) {
         console.error('Error deleting restaurant', error);
@@ -98,7 +99,7 @@ function RestaurantDetails() {
           {restaurant && restaurant.location}
         </p>
         <p>
-          {restaurant && <img src={`http://localhost:8080/uploads/${restaurant.image}`} alt={restaurant.name} />}
+          {restaurant && <img src={`${configuration.base_url}uploads/${restaurant.image}`} alt={restaurant.name} />}
         </p>
         <button onClick={handleUpdate} type="button">Update</button>
         <button onClick={handleConfirmation} type="button">Delete</button>

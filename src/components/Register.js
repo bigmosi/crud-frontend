@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import configuration from '../config/configuration';
 
 import './Register.css';
 
@@ -15,7 +16,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:8080/users/signup', {
+      const response = await axios.post(`${configuration.base_url}users/signup`, {
         username,
         password,
       });

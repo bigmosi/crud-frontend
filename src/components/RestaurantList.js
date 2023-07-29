@@ -3,12 +3,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './RestaurantList.css';
 import Spinner from './Spinner';
+import configuration from '../config/configuration';
 
 function RestaurantList() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/restaurants/')
+    axios.get(`${configuration.base_url}restaurants`)
       .then((response) => {
         setRestaurants(response.data);
       })
@@ -33,7 +34,7 @@ function RestaurantList() {
                 <p>{restaurant.location}</p>
               </div>
               {restaurant.image && (
-                <img src={`http://localhost:8080/uploads/${restaurant.image}`} alt={restaurant.name} className="restaurant-image" />
+                <img src={`${configuration.base_url}uploads/${restaurant.image}`} alt={restaurant.name} className="restaurant-image" />
               )}
             </li>
           ))}

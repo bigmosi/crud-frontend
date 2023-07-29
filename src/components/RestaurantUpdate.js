@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import configuration from '../config/configuration';
 
 function RestaurantUpdate({ restaurant, onUpdate, onCancel }) {
   const [updatedRestaurant, setUpdatedRestaurant] = useState(restaurant);
@@ -28,7 +29,7 @@ function RestaurantUpdate({ restaurant, onUpdate, onCancel }) {
       const formData = new FormData();
       formData.append('image', updatedRestaurant.image);
 
-      await axios.put(`http://localhost:8080/restaurants/${id}`, formData, {
+      await axios.put(`${configuration.base_url}restaurants/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

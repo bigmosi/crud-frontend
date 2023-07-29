@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import configuration from '../config/configuration';
 
 import './Login.css';
 
@@ -17,7 +18,7 @@ const Login = ({ onLogin }) => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:8080/users/login', {
+      const response = await axios.post(`${configuration.base_url}users/login`, {
         username,
         password,
       });
@@ -25,7 +26,6 @@ const Login = ({ onLogin }) => {
       const { token } = response.data;
       console.log('Login successful');
 
-      // Save the token in local storage before redirecting
       localStorage.setItem('token', token);
 
       onLogin();

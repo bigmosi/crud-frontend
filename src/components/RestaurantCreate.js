@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import configuration from '../config/configuration';
 
 const Container = styled.div`
   max-width: 600px;
@@ -87,10 +88,10 @@ function RestaurantCreate() {
 
       const token = localStorage.getItem('token');
       axios
-        .post('http://localhost:8080/restaurants', formData, {
+        .post(`${configuration.base_url}restaurants`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data for file upload
+            'Content-Type': 'multipart/form-data',
           },
         })
         .then((data) => {
