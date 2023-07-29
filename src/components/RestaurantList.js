@@ -8,7 +8,7 @@ function RestaurantList() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/v1/restaurants/')
+    axios.get('http://localhost:8080/restaurants/')
       .then((response) => {
         setRestaurants(response.data);
       })

@@ -84,8 +84,15 @@ function RestaurantCreate() {
       formData.append('cuisineType', cuisineType);
       formData.append('location', location);
       formData.append('image', image);
+
+      const token = localStorage.getItem('token');
       axios
-        .post('http://localhost:8080/api/v1/restaurants', formData)
+        .post('http://localhost:8080/restaurants', formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data for file upload
+          },
+        })
         .then((data) => {
           console.log('Restaurant created:', data);
           navigate('/');
