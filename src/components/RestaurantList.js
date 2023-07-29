@@ -30,7 +30,7 @@ function RestaurantList() {
           {restaurants.map((restaurant) => (
             <li key={restaurant.id} className="restaurant-title">
               <div className="description">
-                <Link to={`/restaurant/${restaurant.id}`} className="restaurant-info">{restaurant.name}</Link>
+                <Link to={`/restaurant/${restaurant._id}`} className="restaurant-info">{restaurant.name}</Link>
                 <p>{restaurant.location}</p>
               </div>
               {restaurant.image && (

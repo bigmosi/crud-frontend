@@ -15,6 +15,7 @@ function RestaurantDetails() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+  console.log(id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,9 +29,10 @@ function RestaurantDetails() {
         setIsLoading(false);
       }
     };
-
+  
     fetchRestaurantDetails();
   }, [id]);
+  
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this restaurant?');
