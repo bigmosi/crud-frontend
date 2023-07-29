@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
+import './Login.css';
+
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,51 +15,51 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-  
+
     try {
       const response = await axios.post('http://localhost:8080/users/login', {
         username,
         password,
       });
-  
+
       const { token } = response.data;
       console.log('Login successful');
-  
+
       // Save the token in local storage before redirecting
       localStorage.setItem('token', token);
-  
-      // Call the onLogin prop to update isAuthenticated in App.js
+
       onLogin();
-  
-      // Redirect to the homepage after successful login
+
       navigate('/');
     } catch (error) {
-      setError('Invalid email or password');
+      setError('Invalid username or password');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+    <div className="login-container">
+      <h2 className="login-title">Login</h2>
+      <form onSubmit={handleLogin} className="login-form">
         <input
           type="username"
-          placeholder="username"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="login-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="login-input"
         />
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className="login-button">
           {loading ? 'Logging In...' : 'Login'}
         </button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="login-error">{error}</p>}
       </form>
     </div>
   );

@@ -1,32 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './Navigation.css';
+
 const Navigation = ({ isAuthenticated, onLogout }) => {
   return (
-    <nav>
-      <ul>
+    <nav className="navigation-container">
+      <ul className="navigation-list">
         {isAuthenticated ? (
           <>
-            <li>
-              <Link to="/">Home</Link>
+            <li className="navigation-item">
+              <Link to="/" className="navigation-link">
+                Home
+              </Link>
             </li>
-            <li>
-              <Link to="/restaurants/create">Create Restaurant</Link>
+            <li className="navigation-item">
+              <Link to="/restaurants/create" className="navigation-link">
+                Create Restaurant
+              </Link>
             </li>
-            <li>
-              <Link to="/restaurants">List of Restaurants</Link>
+            <li className="navigation-item">
+              <Link to="/restaurants" className="navigation-link">
+                List of Restaurants
+              </Link>
             </li>
-            <li>
-              <button onClick={onLogout}>Logout</button>
+            <li className="navigation-item">
+              <button onClick={onLogout} className="navigation-button">
+                Logout
+              </button>
             </li>
           </>
         ) : (
           <>
-            <li>
-              <Link to="/login">Login</Link>
+            <li className="navigation-item">
+              <Link to="/login" className="navigation-link">
+                Login
+              </Link>
             </li>
-            <li>
-              <Link to="/register">Register</Link>
+            <li className="navigation-item">
+              <Link to="/register" className="navigation-link">
+                Register
+              </Link>
             </li>
           </>
         )}

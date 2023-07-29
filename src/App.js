@@ -8,15 +8,14 @@ import RestaurantUpdate from './components/RestaurantUpdate';
 import RestaurantDelete from './components/RestaurantDelete';
 import Login from './components/Login';
 import Register from './components/Register';
+import clearAuthenticationToken from './components/authUtils';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { id } = useParams();
 
-  // Function to handle user logout
   const handleLogout = () => {
-    // In a real application, you would clear the authentication token.
-    // For this example, we'll just set the isAuthenticated state to false directly.
+    clearAuthenticationToken();
     setIsAuthenticated(false);
   };
 
@@ -25,11 +24,9 @@ function App() {
       <div className="App">
         <Navigation isAuthenticated={isAuthenticated} onLogout={handleLogout} />
         <Routes>
-          {/* Public Routes */}
           <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
           <Route path="/register" element={<Register />} />
 
-          {/* Private Routes */}
           {isAuthenticated ? (
             <>
               <Route path="/" element={<RestaurantList />} />
@@ -39,7 +36,6 @@ function App() {
               <Route path="/restaurants/:id/delete" element={<RestaurantDelete />} />
             </>
           ) : (
-            // Redirect unauthorized users to login page
             <Route path="*" element={<Navigate to="/login" />} />
           )}
         </Routes>

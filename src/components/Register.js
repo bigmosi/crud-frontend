@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import './Register.css';
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -9,7 +11,6 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     setLoading(true);
     setError('');
 
@@ -20,11 +21,7 @@ const Register = () => {
       });
 
       const { message } = response.data;
-      console.log(message); // User registered successfully
-
-      // Optionally, you can redirect the user to the login page after successful registration
-      // You may use history.push('/login') or any other navigation method
-      // to redirect to the login page.
+      console.log(message);
 
     } catch (error) {
       setError('Error occurred during registration');
@@ -34,25 +31,27 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
+    <div className="register-container">
+      <h2 className="register-title">Register</h2>
+      <form onSubmit={handleRegister} className="register-form">
         <input
           type="text"
-          placeholder="username"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="register-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="register-input"
         />
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className="register-button">
           {loading ? 'Registering...' : 'Register'}
         </button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="register-error">{error}</p>}
       </form>
     </div>
   );
