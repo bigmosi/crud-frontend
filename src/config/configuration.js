@@ -1,5 +1,5 @@
 const configuration = {
-    base_url: "http://localhost:8080/"
+    base_url: "https://crud-backend-api.onrender.com/"
 };
 
 export default configuration;
