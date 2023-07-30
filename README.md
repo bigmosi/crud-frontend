@@ -15,7 +15,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/restaurant-management-system.git
+git clone https://github.com/bigmosi/crud-frontend.git
 Navigate to the project directory:
 
 bash
