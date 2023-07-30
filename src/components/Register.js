@@ -5,10 +5,12 @@ import configuration from '../config/configuration';
 import './Register.css';
 
 const Register = () => {
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -18,11 +20,13 @@ const Register = () => {
     try {
       const response = await axios.post(`${configuration.base_url}users/signup`, {
         username,
+        email,
         password,
       });
 
       const { message } = response.data;
       console.log(message);
+      
 
     } catch (error) {
       setError('Error occurred during registration');
@@ -35,6 +39,13 @@ const Register = () => {
     <div className="register-container">
       <h2 className="register-title">Register</h2>
       <form onSubmit={handleRegister} className="register-form">
+      <input
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="register-input"
+        />
         <input
           type="text"
           placeholder="Username"

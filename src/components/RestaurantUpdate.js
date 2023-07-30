@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useParams } from 'react-router';
 import configuration from '../config/configuration';
+import './RestaurantUpdate.css';
 
 function RestaurantUpdate({ restaurant, onUpdate, onCancel }) {
   const [updatedRestaurant, setUpdatedRestaurant] = useState(restaurant);
@@ -28,9 +29,11 @@ function RestaurantUpdate({ restaurant, onUpdate, onCancel }) {
     try {
       const formData = new FormData();
       formData.append('image', updatedRestaurant.image);
+      const token = localStorage.getItem('token');
 
       await axios.put(`${configuration.base_url}restaurants/${id}`, formData, {
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         },
       });
@@ -46,7 +49,7 @@ function RestaurantUpdate({ restaurant, onUpdate, onCancel }) {
   };
 
   return (
-    <div>
+    <div className="restaurant-update">
       <h2>Update Restaurant</h2>
       <form onSubmit={handleSubmit}>
         <div>

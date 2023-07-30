@@ -1,12 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import configuration from '../config/configuration';
 
 function RestaurantDelete() {
   const { id } = useParams();
 
   const handleDelete = () => {
-    fetch(`/restaurants/${id}`, {
+    const token = localStorage.getItem('token');
+    fetch(`${configuration.base_url}restaurants/${id}`, {
       method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
       .then((response) => {
         if (response.ok) {

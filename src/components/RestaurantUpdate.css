@@ -1,0 +1,58 @@
+.restaurant-update {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .restaurant-update h2 {
+    margin-bottom: 10px;
+  }
+  
+  .restaurant-update form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .restaurant-update div {
+    margin-bottom: 10px;
+  }
+  
+  .restaurant-update label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .restaurant-update input[type="text"],
+  .restaurant-update input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .restaurant-update button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #36D7B7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .restaurant-update button[type="submit"] {
+    background-color: #36D7B7;
+  }
+  
+  .restaurant-update button[type="button"] {
+    background-color: #ccc;
+  }
+  
+  .restaurant-update button:hover {
+    background-color: #29a895;
+  }
+  
