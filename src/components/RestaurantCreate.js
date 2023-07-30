@@ -87,6 +87,7 @@ function RestaurantCreate() {
       formData.append('image', image);
 
       const token = localStorage.getItem('token');
+      console.log(token);
       axios
         .post(`${configuration.base_url}restaurants`, formData, {
           headers: {
